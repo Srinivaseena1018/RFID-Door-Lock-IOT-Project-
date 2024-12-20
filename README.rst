@@ -23,8 +23,6 @@ Interface (SPI) interface.
 Development
 ----------
 
-**The development by owner miguelbalboa has ended**.
-
 **Feature status: complete freeze**; no function or API change.
 
 **Code status: partial freeze**; just fixes/typos or documentation updates; *no* extensions for other boards; *no* new examples.
@@ -35,51 +33,6 @@ Development
 This library has a long history and is used in many projects. These projects often do not document what version they use. Committing changes might break those old projects and lead to bad experiences (for beginners) and support requests. For these reasons the library is in freeze mode. You can still commit typo, documentation or bug fixes.
 
 
-.. _before buy:
-Before buy
-----------
-Please notice that there are many sellers (ebay, aliexpress, ..) who sell mfrc522 boards. **The quality of these boards are extremely different.** Some are soldered with wrong/low quality capacitors or fake/defect mfrc522.
-
-**Please consider buying several devices from different suppliers.** So the chance of getting a working device is higher.
-
-If you got a bad board and you can tell us how to detect those boards (silk, chip description, ..), please share your knowledge.
-
-
-.. _what works and not:
-What works and not?
-----------
-
-* **Works**
-  
-  #. Communication (Crypto1) with MIFARE Classic (1k, 4k, Mini).
-  #. Communication (Crypto1) with MIFARE Classic compatible PICCs.
-  #. Firmware self check of MFRC522.
-  #. Set the UID, write to sector 0, and unbrick Chinese UID changeable MIFARE cards.
-  #. Manage the SPI chip select pin (aka SS, SDA)
-
-* **Works partially**
-
-  #. Communication with MIFARE Ultralight.
-  #. Other PICCs (Ntag216).
-  #. More than 2 modules, require a multiplexer `#191 <https://github.com/miguelbalboa/rfid/issues/191#issuecomment-242631153>`_.
-
-* **Doesn't work**
-  
-  #. MIFARE DESFire, MIFARE DESFire EV1/EV2, not supported by software.
-  #. Communication with 3DES or AES, not supported by software.
-  #. Peer-to-peer (ISO/IEC 18092), not `supported by hardware`_.
-  #. Communication with smart phone, not `supported by hardware`_.
-  #. Card emulation, not `supported by hardware`_.
-  #. Use of IRQ pin. But there is a proof-of-concept example.
-  #. With Intel Galileo (Gen2) see `#310 <https://github.com/miguelbalboa/rfid/issues/310>`__, not supported by software.
-  #. Power reduction modes `#269 <https://github.com/miguelbalboa/rfid/issues/269>`_, not supported by software.
-  #. I2C instead of SPI `#240 <https://github.com/miguelbalboa/rfid/issues/240>`_, not supported by software.
-  #. UART instead of SPI `#281 <https://github.com/miguelbalboa/rfid/issues/281>`_, not supported by software.
-  
-* **Need more?**
-
-  #. If software: code it and make a pull request.
-  #. If hardware: buy a more expensive like PN532 (supports NFC and many more, but costs about $15 and not usable with this library).
 
 
 .. _compatible ide:
@@ -88,42 +41,6 @@ Compatible IDE
 This library works with Arduino IDE 1.6, older versions are **not supported** and will cause compiler errors. The built-in library manager is supported.
 
 If you use your own compiler, you have to enable ``c++11``-support.
-
-
-.. _compatible boards:
-Compatible boards
-----------
-
-**!!!Only for advanced users!!!**
-
-This library is compatible with the Teensy and ESP8266 if you use the board plugin of the Arduino IDE. Not all examples are available for every board. You also have to change pins. See `pin layout`_.
-
-Some user made some patches/suggestions/ports for other boards:
-
-* Linux: https://github.com/miguelbalboa/rfid/pull/216
-* chipKIT: https://github.com/miguelbalboa/rfid/pull/230
-* ESP8266 (native): https://github.com/miguelbalboa/rfid/pull/235
-* LPCOPen (in C): https://github.com/miguelbalboa/rfid/pull/258
-
-Note that the main target/support of library is still Arduino.
-
-.. _support issue:
-Support/issue
-----------
-1. First checkout `what works and not`_ and `troubleshooting`_ .
-
-2. It seems to be a hardware issue or you need support to program your project?
-    Please ask in the official `Arduino forum`_, where you would get a much faster answer than on Github.
-
-3. It seems to be a software issue?
-    Open an issue on Github.
-
-
-.. _code style:
-Code style
-----------
-
-Please use ``fixed integers``, see `stdint.h`_. Why? This library is compatible with different boards which use different architectures (16bit and 32bit.) Unfixed ``int`` variables have different sizes in different environments and may cause unpredictable behaviour.
 
 
 .. _pin layout:
@@ -346,22 +263,6 @@ Dependency
 
   * From: Arduino IDE / Compiler and target specific
   * License: different
-
-
-History
--------
-
-The MFRC522 library was first created in Jan 2012 by Miguel Balboa (from
-http://circuitito.com) based on code by Dr. Leong (from http://B2CQSHOP.com)
-for *"Arduino RFID module Kit 13.56 Mhz with Tags SPI W and R By COOQRobot"*.
-
-It was translated into English and rewritten/refactored in the fall of 2013
-by Søren Thing Andersen (from http://access.thing.dk).
-
-It has been extended with functionality to alter sector 0 on Chinese UID changeable MIFARE card in Oct 2014 by Tom Clement (from http://tomclement.nl).
-
-Maintained by miguelbalboa until 2016.
-Maintained by Rotzbua from 2016 until 2020.
 
 
 .. _arduino: https://arduino.cc/
